@@ -154,7 +154,7 @@ EOF  all  create  destroy  help  quit  show  update
 No known bugs at this time. 
 
 ## Authors
-Soufiane KAMMA - [Github](https://github.com/SoufianKm) <br>
+Soufiane Kamma - [Github](https://github.com/SoufianKm) <br>
 Rania Triek - [Github](https://github.com/rania345)
 
 ## License
