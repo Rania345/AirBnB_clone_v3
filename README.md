@@ -154,9 +154,8 @@ EOF  all  create  destroy  help  quit  show  update
 No known bugs at this time. 
 
 ## Authors
-Soufiane KAMMA - [Github](https://github.com/alexaorrico) 
+Soufiane KAMMA - [Github](https://github.com/alexaorrico)
 Rania Triek - [Github](https://github.com/rania345)
 
-Second part of Airbnb: Joann Vuong
 ## License
 Public Domain. No copy write protection. 
