@@ -16,3 +16,20 @@ def status():
     res.status_code = 200
 
     return res
+
+
+@app_views.route('/stats')
+def count_stats():
+    """ retrieves the number of each objects by type """
+    classes = {"Amenity": "amenities",
+               "City": "cities",
+               "Place": "places",
+               "Review": "reviews",
+               "State": "states",
+               "User": "users"}
+    data = {}
+
+    for cls in classes:
+        data[classes.get(cls)] = storage.count(cls)
+
+    return jsonify(data)
