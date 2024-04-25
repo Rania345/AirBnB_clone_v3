@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-route for handling Amenity objects and operations
-"""
+"""Amenities view"""
 from flask import jsonify, abort, request
 from api.v1.views import app_views, storage
 from models.amenity import Amenity
@@ -9,10 +7,7 @@ from models.amenity import Amenity
 
 @app_views.route("/amenities", methods=["GET"], strict_slashes=False)
 def amenity_get_all():
-    """
-    retrieves all Amenity objects
-    :return: json of all states
-    """
+    """show all amenities"""
     am_list = []
     am_obj = storage.all("Amenity")
     for obj in am_obj.values():
@@ -23,10 +18,7 @@ def amenity_get_all():
 
 @app_views.route("/amenities", methods=["POST"], strict_slashes=False)
 def amenity_create():
-    """
-    create amenity route
-    :return: newly created amenity obj
-    """
+    """create a new amenity"""
     am_json = request.get_json(silent=True)
     if am_json is None:
         abort(400, 'Not a JSON')
@@ -44,11 +36,7 @@ def amenity_create():
 @app_views.route("/amenities/<amenity_id>",  methods=["GET"],
                  strict_slashes=False)
 def amenity_by_id(amenity_id):
-    """
-    gets a specific Amenity object by ID
-    :param amenity_id: amenity object id
-    :return: state obj with the specified id or error
-    """
+    """show amenity by ID"""
 
     fetched_obj = storage.get("Amenity", str(amenity_id))
 
@@ -61,11 +49,7 @@ def amenity_by_id(amenity_id):
 @app_views.route("/amenities/<amenity_id>",  methods=["PUT"],
                  strict_slashes=False)
 def amenity_put(amenity_id):
-    """
-    updates specific Amenity object by ID
-    :param amenity_id: amenity object ID
-    :return: amenity object and 200 on success, or 400 or 404 on failure
-    """
+    """updates Amenity by ID"""
     am_json = request.get_json(silent=True)
     if am_json is None:
         abort(400, 'Not a JSON')
@@ -82,11 +66,7 @@ def amenity_put(amenity_id):
 @app_views.route("/amenities/<amenity_id>",  methods=["DELETE"],
                  strict_slashes=False)
 def amenity_delete_by_id(amenity_id):
-    """
-    deletes Amenity by id
-    :param amenity_id: Amenity object id
-    :return: empty dict with 200 or 404 if not found
-    """
+    """deletes Amenity by ID"""
 
     fetched_obj = storage.get("Amenity", str(amenity_id))
 

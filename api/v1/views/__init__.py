@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-views
-"""
+"""views"""
 
 from flask import Blueprint
 
