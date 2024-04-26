@@ -1,15 +1,19 @@
 #!/usr/bin/python3
-"""places view"""
+"""
+route for handling Place objects and operations
+"""
 from flask import jsonify, abort, request
-from api.v1 import app_views
+from api.v1.views import app_views, storage
 from models.place import Place
-from models import storage
 
 
 @app_views.route("/cities/<city_id>/places", methods=["GET"],
                  strict_slashes=False)
 def places_by_city(city_id):
-    """show all Place by city"""
+    """
+    retrieves all Place objects by city
+    :return: json of all Places
+    """
     place_list = []
     city_obj = storage.get("City", str(city_id))
     for obj in city_obj.places:
@@ -21,7 +25,10 @@ def places_by_city(city_id):
 @app_views.route("/cities/<city_id>/places", methods=["POST"],
                  strict_slashes=False)
 def place_create(city_id):
-    """create new place"""
+    """
+    create place route
+    :return: newly created Place obj
+    """
     place_json = request.get_json(silent=True)
     if place_json is None:
         abort(400, 'Not a JSON')
@@ -47,7 +54,11 @@ def place_create(city_id):
 @app_views.route("/places/<place_id>",  methods=["GET"],
                  strict_slashes=False)
 def place_by_id(place_id):
-    """gets Place by ID"""
+    """
+    gets a specific Place object by ID
+    :param place_id: place object id
+    :return: place obj with the specified id or error
+    """
 
     fetched_obj = storage.get("Place", str(place_id))
 
@@ -60,7 +71,11 @@ def place_by_id(place_id):
 @app_views.route("/places/<place_id>",  methods=["PUT"],
                  strict_slashes=False)
 def place_put(place_id):
-    """updates Place by ID"""
+    """
+    updates specific Place object by ID
+    :param place_id: Place object ID
+    :return: Place object and 200 on success, or 400 or 404 on failure
+    """
     place_json = request.get_json(silent=True)
 
     if place_json is None:
@@ -83,7 +98,11 @@ def place_put(place_id):
 @app_views.route("/places/<place_id>",  methods=["DELETE"],
                  strict_slashes=False)
 def place_delete_by_id(place_id):
-    """deletes Place by ID"""
+    """
+    deletes Place by id
+    :param place_id: Place object id
+    :return: empty dict with 200 or 404 if not found
+    """
 
     fetched_obj = storage.get("Place", str(place_id))
 
