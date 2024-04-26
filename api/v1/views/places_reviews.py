@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """places reviews"""
 from flask import jsonify, abort, request
-from api.v1.views import app_views, storage
+from api.v1 import app_views
 from models.review import Review
+from models import storage
 
 
 @app_views.route("/places/<place_id>/reviews", methods=["GET"],
