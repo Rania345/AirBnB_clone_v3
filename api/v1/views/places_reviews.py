@@ -17,7 +17,7 @@ def reviews_by_place(place_id):
         abort(404)
 
     for obj in place_obj.reviews:
-        review_list.append(obj.to_json())
+        review_list.append(obj.to_dict())
 
     return jsonify(review_list)
 
@@ -42,7 +42,7 @@ def review_create(place_id):
 
     new_review = Review(**review_json)
     new_review.save()
-    resp = jsonify(new_review.to_json())
+    resp = jsonify(new_review.to_dict())
     resp.status_code = 201
 
     return resp
@@ -58,7 +58,7 @@ def review_by_id(review_id):
     if fetched_obj is None:
         abort(404)
 
-    return jsonify(fetched_obj.to_json())
+    return jsonify(fetched_obj.to_dict())
 
 
 @app_views.route("/reviews/<review_id>",  methods=["PUT"],
@@ -82,7 +82,7 @@ def review_put(review_id):
 
     fetched_obj.save()
 
-    return jsonify(fetched_obj.to_json())
+    return jsonify(fetched_obj.to_dict())
 
 
 @app_views.route("/reviews/<review_id>",  methods=["DELETE"],
